@@ -1,0 +1,31 @@
+[
+    {
+        "id": "c1f428c0-477e-440d-9aa8-d93870401052",
+        "nomebar": "Jenkins, Gottlieb and Beahan",
+        "descricao": "6th generation",
+        "email": "meuEmail@gmail.com",
+        "imagemurl": "https://res.cloudinary.com/dzv2kotv4/image/upload/v1731014676/iv3rdomgoowsrz0p33md.jpg",
+        "endereco": {
+            "id": "851eb2e9-3476-4b8c-851b-838a355789c8",
+            "latitude": 1.32,
+            "longitude": 0.0
+        },
+        "wifi": true,
+        "tv": true,
+        "arcondicionado": true,
+        "estacionamento": false,
+        "mesabilhar": true,
+        "musicaaovivo": true,
+        "praia": true,
+        "arlivre": true,
+        "comentarios": [
+            {
+                "id": 1,
+                "usuario": "novoUser",
+                "comentario": "Ver tametsi esse ver vado sunt aliquid. Consequatur doloribus conservo corroboro defaeco annus vigilo. Clam thymum commodi."
+            }
+        ],
+        "avaliacao": 3.8,
+        "numerodeavaliacao": 2
+    }
+]

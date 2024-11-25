@@ -1,0 +1,215 @@
+[
+    {
+        "id": "c1f428c0-477e-440d-9aa8-d93870401052",
+        "nomebar": "Jenkins, Gottlieb and Beahan",
+        "descricao": "6th generation",
+        "email": "meuEmail@gmail.com",
+        "imagemurl": "https://res.cloudinary.com/dzv2kotv4/image/upload/v1731014676/iv3rdomgoowsrz0p33md.jpg",
+        "endereco": {
+            "id": "851eb2e9-3476-4b8c-851b-838a355789c8",
+            "latitude": 1.32,
+            "longitude": 0.0
+        },
+        "wifi": true,
+        "tv": true,
+        "arcondicionado": true,
+        "estacionamento": false,
+        "mesabilhar": true,
+        "musicaaovivo": true,
+        "praia": true,
+        "arlivre": true,
+        "comentarios": [
+            {
+                "id": 1,
+                "usuario": "novoUser",
+                "comentario": "Ver tametsi esse ver vado sunt aliquid. Consequatur doloribus conservo corroboro defaeco annus vigilo. Clam thymum commodi."
+            }
+        ],
+        "avaliacao": 3.8,
+        "numerodeavaliacao": 2
+    },
+    {
+        "id": "f64fc80f-06e3-4175-9bad-6fb7bb2b4c4e",
+        "nomebar": "Jenkins, Gottleieb and Beahan",
+        "descricao": "6th generaetion",
+        "email": "meuEmail@gmail.com",
+        "imagemurl": "https://res.cloudinary.com/dzv2kotv4/image/upload/v1731014935/zablwen4enrcaimxkzjw.jpg",
+        "endereco": {
+            "id": "851eb2e9-3476-4b8c-851b-838a355789c8",
+            "latitude": 1.32,
+            "longitude": 0.0
+        },
+        "wifi": true,
+        "tv": true,
+        "arcondicionado": true,
+        "estacionamento": false,
+        "mesabilhar": true,
+        "musicaaovivo": true,
+        "praia": true,
+        "arlivre": true,
+        "comentarios": [],
+        "avaliacao": 3.0,
+        "numerodeavaliacao": 0
+    },
+    {
+        "id": "4c710d1b-788c-4ff6-a131-e8be2a08ecd2",
+        "nomebar": "hollow-celsius.us",
+        "descricao": "hybrid",
+        "email": "meuEmail@gmail.com",
+        "imagemurl": null,
+        "endereco": {
+            "id": "851eb2e9-3476-4b8c-851b-838a355789c8",
+            "latitude": 1.32,
+            "longitude": 0.0
+        },
+        "wifi": true,
+        "tv": true,
+        "arcondicionado": true,
+        "estacionamento": false,
+        "mesabilhar": true,
+        "musicaaovivo": true,
+        "praia": true,
+        "arlivre": true,
+        "comentarios": [],
+        "avaliacao": 0.0,
+        "numerodeavaliacao": 0
+    },
+    {
+        "id": "57292494-b983-40dc-acd9-63ca90ed4ee4",
+        "nomebar": "doting-manner.com",
+        "descricao": "client-driven",
+        "email": "meuEmail@gmail.com",
+        "imagemurl": null,
+        "endereco": {
+            "id": "851eb2e9-3476-4b8c-851b-838a355789c8",
+            "latitude": 1.32,
+            "longitude": 0.0
+        },
+        "wifi": true,
+        "tv": true,
+        "arcondicionado": true,
+        "estacionamento": false,
+        "mesabilhar": true,
+        "musicaaovivo": true,
+        "praia": true,
+        "arlivre": true,
+        "comentarios": [],
+        "avaliacao": 4.0,
+        "numerodeavaliacao": 0
+    },
+    {
+        "id": "b8ef8f47-a24b-4284-80e4-b0ad0499a72c",
+        "nomebar": "smug-devastation.info",
+        "descricao": "optimizing",
+        "email": "meuEmail@gmail.com",
+        "imagemurl": null,
+        "endereco": {
+            "id": "851eb2e9-3476-4b8c-851b-838a355789c8",
+            "latitude": 1.32,
+            "longitude": 0.0
+        },
+        "wifi": true,
+        "tv": true,
+        "arcondicionado": true,
+        "estacionamento": false,
+        "mesabilhar": true,
+        "musicaaovivo": true,
+        "praia": true,
+        "arlivre": true,
+        "comentarios": [],
+        "avaliacao": 0.0,
+        "numerodeavaliacao": 0
+    },
+    {
+        "id": "546bdee2-dec1-4423-be2a-1f547cc006ef",
+        "nomebar": "aware-pulse.net",
+        "descricao": "executive",
+        "email": "meuEmail@gmail.com",
+        "imagemurl": "https://res.cloudinary.com/dzv2kotv4/image/upload/v1731015035/wkendeddgstyj7eiyidb.jpg",
+        "endereco": {
+            "id": "851eb2e9-3476-4b8c-851b-838a355789c8",
+            "latitude": 1.32,
+            "longitude": 0.0
+        },
+        "wifi": true,
+        "tv": true,
+        "arcondicionado": true,
+        "estacionamento": false,
+        "mesabilhar": true,
+        "musicaaovivo": true,
+        "praia": true,
+        "arlivre": true,
+        "comentarios": [],
+        "avaliacao": 0.0,
+        "numerodeavaliacao": 0
+    },
+    {
+        "id": "71a6f983-7fb0-4fe1-92ca-7fb0be3e2cfa",
+        "nomebar": "mild-jacket.org",
+        "descricao": "user-facing",
+        "email": "meuEmail@gmail.com",
+        "imagemurl": null,
+        "endereco": {
+            "id": "851eb2e9-3476-4b8c-851b-838a355789c8",
+            "latitude": 1.32,
+            "longitude": 0.0
+        },
+        "wifi": true,
+        "tv": true,
+        "arcondicionado": true,
+        "estacionamento": false,
+        "mesabilhar": true,
+        "musicaaovivo": true,
+        "praia": true,
+        "arlivre": true,
+        "comentarios": [],
+        "avaliacao": 0.0,
+        "numerodeavaliacao": 0
+    },
+    {
+        "id": "5ce69e40-3e9a-4a10-b984-df998d334f38",
+        "nomebar": "fixed-quit.info",
+        "descricao": "web-enabled",
+        "email": "meuEmail@gmail.com",
+        "imagemurl": null,
+        "endereco": {
+            "id": "851eb2e9-3476-4b8c-851b-838a355789c8",
+            "latitude": 1.32,
+            "longitude": 0.0
+        },
+        "wifi": true,
+        "tv": true,
+        "arcondicionado": true,
+        "estacionamento": false,
+        "mesabilhar": true,
+        "musicaaovivo": true,
+        "praia": true,
+        "arlivre": true,
+        "comentarios": [],
+        "avaliacao": 0.0,
+        "numerodeavaliacao": 0
+    },
+    {
+        "id": "c1e05d7c-3d02-4e86-bd87-98feded1ba53",
+        "nomebar": "Welch - Wisoky",
+        "descricao": "fresh-thinking",
+        "email": "meuEmail@gmail.com",
+        "imagemurl": null,
+        "endereco": {
+            "id": "851eb2e9-3476-4b8c-851b-838a355789c8",
+            "latitude": 23.2,
+            "longitude": 25.0
+        },
+        "wifi": true,
+        "tv": true,
+        "arcondicionado": true,
+        "estacionamento": false,
+        "mesabilhar": true,
+        "musicaaovivo": true,
+        "praia": true,
+        "arlivre": true,
+        "comentarios": [],
+        "avaliacao": 0.0,
+        "numerodeavaliacao": 0
+    }
+]
