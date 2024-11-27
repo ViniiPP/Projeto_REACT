@@ -2,22 +2,21 @@ import React from 'react';
 import { Text, View, StyleSheet,TouchableHighlight,Button,TextInput } from "react-native"
 import { useState,useEffect } from 'react';
 import { api } from '../../services/api';
-
+ 
 export const Namebar = ({navigation}) => {
     const MaxLenght = 50;
-    const [numberDigito,setNumberDigito] = useState ('');
     const [nomeBar, setNomeBar] = useState(''); // Campo para o nome do bar
-
+ 
     const handleAdvance = async () => {
         if (!nomeBar) {
             Alert.alert('Erro', 'Por favor, preencha o nome do bar.');
             return;
         }
-
+ 
         navigation.navigate('description', {nomeBar}); // Navega para a próxima página
     };
-
-
+ 
+ 
     return (
         <View style = {styles.bodyContainer}>
            <View style = {styles.bodyContainer}>
@@ -25,7 +24,7 @@ export const Namebar = ({navigation}) => {
                 <Text style  = {styles.textTitle}>Vamos dar um nome ao seu bar</Text>
                 <Text style = {styles.Subtitle}>Nomes curtos funcionam melhor. Não se preocupe, você poderá fazer alterações depois.</Text>
                 <TextInput style = {styles.textinput} maxLength={50} value={nomeBar} onChangeText={(setNomeBar)}></TextInput>
-                <Text>{MaxLenght - numberDigito.length} caracteres disponíveis</Text>
+                <Text>{MaxLenght - nomeBar.length} caracteres disponíveis</Text>
             </View>
            </View>
            <View style = {styles.nav}>
@@ -42,7 +41,7 @@ export const Namebar = ({navigation}) => {
            </View>
         </View>
     )
-
+ 
  
 }
 const styles = StyleSheet.create (
@@ -51,7 +50,7 @@ const styles = StyleSheet.create (
             flex: 1,
             backgroundColor: '#FBF7ED',
             alignItems: 'center',
-        
+       
         },
         TextContainer :{
             marginTop: 90,
@@ -62,7 +61,7 @@ const styles = StyleSheet.create (
         textinput : {
             backgroundColor: 'white',
             borderRadius: 10,
-            borderWidth: 3, 
+            borderWidth: 3,
             borderColor: 'black',
             height: 110
         },
@@ -76,7 +75,7 @@ const styles = StyleSheet.create (
         },
         nav : {
             elevation: 30,
-            flexDirection: 'row', 
+            flexDirection: 'row',
             width: '100%',
             height: 75,
             backgroundColor: 'white',
@@ -98,8 +97,8 @@ const styles = StyleSheet.create (
         touch : {
             alignItems: 'center',
         }
-
+ 
     }
 )
-
+ 
 export default Namebar;

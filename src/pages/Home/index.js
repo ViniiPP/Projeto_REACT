@@ -5,8 +5,9 @@ import cards from '../../json/bares.json';
 import {OneStar,TwoStar,ThreStar,FourStar,FiveStar} from '../../components/Stars'
 import NoImage from '../../assets/NoImage.png'
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
-import { GetLocation } from '../../services/LocationApi';
+
 import axios from 'axios';
+import { GetLocation } from '../../services/LocationApi';
 
 export function Home({ navigation }) {
     const noImage = 'https://semantic-ui.com/images/wireframe/image.png';
@@ -40,19 +41,17 @@ export function Home({ navigation }) {
       fetchBars(); // Chama a função para buscar os dados
     }, [1]);
   
-    // Função para renderizar as estrelas
     const Stars = (numberStar) => {
-      if (numberStar <= 1) return <OneStar size={18} />;
-      if (numberStar <= 2) return <TwoStar size={18} />;
-      if (numberStar <= 3) return <ThreStar size={18} />;
-      if (numberStar <= 4) return <FourStar size={18} />;
+      if (numberStar >= 1 || numberStar <=2) return <OneStar size={18} />;
+      if (numberStar >= 2 || numberStar <=3) return <TwoStar size={18} />;
+      if (numberStar >= 3 || numberStar <=4) return <ThreStar size={18} />;
+      if (numberStar >= 4 || numberStar <=5) return <FourStar size={18} />;
       if (numberStar === 5) return <FiveStar size={18} />;
-      return null; // Nenhuma estrela para valores inválidos
+      return null;
     };
   
     return (
       <View style={styles.container}>
-        {/* Barra de Pesquisa Estática */}
         <View style={styles.header}>
           <View style={styles.headerComponent}>
             <TextInput style={styles.TextField} placeholder="Pesquisar" />

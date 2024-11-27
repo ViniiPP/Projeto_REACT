@@ -5,15 +5,15 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Keyboard,
   ScrollView,
-  Image
+  Image,
+  Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useAuth } from "../../context/AuthContext";
 import { register } from "../../services/authService";
-
+ 
 export default function Register({ navigation }) {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -21,102 +21,115 @@ export default function Register({ navigation }) {
   const [username, setUsername] = useState("");
   const [telefone, setTelefone] = useState("");
   const { setUser, setToken } = useAuth();
-
+ 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
+ 
   const handleRegister = async () => {
-    const { erro, data, mensagem } = await register(email, password, username, telefone);
-
-    if (erro) {
-      Alert.alert(mensagem);
-      return;
+    try {
+      // Agora estamos passando os dados na ordem correta: username, telefone, email, senha
+      const { erro, data, mensagem } = await register(
+        username, // Nome completo
+        telefone, // Telefone
+        email,    // Email
+        password  // Senha
+      );
+ 
+      if (erro) {
+        Alert.alert("Erro", mensagem); // Exibindo o erro caso a requisição falhe
+        return;
+      }
+ 
+      const { name, token } = data;
+      setUser({ name });
+      setToken(token);
+      Alert.alert("Sucesso", "Conta criada com sucesso!"); // Mensagem de sucesso
+      navigation.navigate("Login"); // Navega para a página inicial após o registro
+    } catch (error) {
+      console.error("Erro ao registrar usuário:", error);
+      Alert.alert("Erro de Rede", "Ocorreu um erro de rede. Tente novamente."); // Caso haja erro de rede
     }
-
-    const { name, token } = data;
-
-    setUser({ name });
-    setToken(token);
   };
-
+ 
   return (
     <LinearGradient colors={['#FFBD2C', '#FFF']} style={styles.background}>
-        <View style={styles.container}>
-            <View style={styles.imageView}>
-                <Image style={styles.imageLogo} source={require('../../assets/LOGO_DO_APP.png')}/>
-            </View>
-
-            <ScrollView
-                contentContainerStyle={styles.scrollContainer}
-                showsVerticalScrollIndicator={false}
-            >
-
-                <View style={styles.registerContainer}>
-                    <Text style={[styles.registerText, {alignSelf: "center"}]}>Cadastre-se</Text>
-
-                    <TextInput
-                        placeholder="Nome Completo"
-                        placeholderTextColor= '#49454F'
-                        style={styles.TextField}
-                        onChangeText={setUsername}
-                    />
-
-                    <TextInput
-                        placeholder="E-Mail"
-                        placeholderTextColor= '#49454F'
-                        style={styles.TextField}
-                        onChangeText={setEmail}
-                    />
-
-                    <TextInput
-                        placeholder="Número de celular"
-                        placeholderTextColor= '#49454F'
-                        style={styles.TextField}
-                        onChangeText={setTelefone}
-                    />
-
-                    <View style={styles.passwordContainer}> 
-                        <TextInput
-                            placeholder="Senha"
-                            placeholderTextColor= '#49454F'
-                            secureTextEntry={!showPassword}
-                            style={styles.TextFieldPassword}
-                            onChangeText={setPassword}
-                        />
-
-                        <TouchableOpacity onPress={togglePasswordVisibility}>
-                            <Ionicons
-                                name={showPassword ? "eye" : "eye-off"}
-                                size={30}
-                                color="black"
-                                style={{marginRight: 20}}
-                            />
-                        </TouchableOpacity>
-                    </View>
-
-                    <TouchableOpacity style={styles.button} onPress={handleRegister}>
-                        <Text style={styles.buttonText}>Crie sua conta</Text>
-                    </TouchableOpacity>
-
-                    <View style={styles.bottomText}>
-                        <Text style={styles.bottomText1}>Já possui uma conta? </Text>
-
-                        <Text style={styles.bottomText2} onPress={() => navigation.navigate("Login")}>Faça o Login</Text>
-                    </View>
-                </View>
-
-            </ScrollView>
+      <View style={styles.container}>
+        <View style={styles.imageView}>
+          <Image style={styles.imageLogo} source={require('../../assets/LOGO_DO_APP.png')} />
         </View>
+ 
+        <ScrollView
+          contentContainerStyle={styles.scrollContainer}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.registerContainer}>
+            <Text style={[styles.registerText, { alignSelf: "center" }]}>Cadastre-se</Text>
+ 
+            <TextInput
+              placeholder="Nome Completo"
+              placeholderTextColor="#49454F"
+              style={styles.TextField}
+              onChangeText={setUsername}
+              value={username}
+            />
+ 
+            <TextInput
+              placeholder="E-Mail"
+              placeholderTextColor="#49454F"
+              style={styles.TextField}
+              onChangeText={setEmail}
+              value={email}
+              keyboardType="email-address"
+            />
+ 
+            <TextInput
+              placeholder="Número de celular"
+              placeholderTextColor="#49454F"
+              style={styles.TextField}
+              onChangeText={setTelefone}
+              value={telefone}
+              keyboardType="phone-pad"
+            />
+ 
+            <View style={styles.passwordContainer}>
+              <TextInput
+                placeholder="Senha"
+                placeholderTextColor="#49454F"
+                secureTextEntry={!showPassword}
+                style={styles.TextFieldPassword}
+                onChangeText={setPassword}
+                value={password}
+              />
+ 
+              <TouchableOpacity onPress={togglePasswordVisibility}>
+                <Ionicons
+                  name={showPassword ? "eye" : "eye-off"}
+                  size={30}
+                  color="black"
+                  style={{ marginRight: 20 }}
+                />
+              </TouchableOpacity>
+            </View>
+ 
+            <TouchableOpacity style={styles.button} onPress={handleRegister}>
+              <Text style={styles.buttonText}>Crie sua conta</Text>
+            </TouchableOpacity>
+ 
+            <View style={styles.bottomText}>
+              <Text style={styles.bottomText1}>Já possui uma conta? </Text>
+              <Text style={styles.bottomText2} onPress={() => navigation.navigate("Login")}>Faça o Login</Text>
+            </View>
+          </View>
+        </ScrollView>
+      </View>
     </LinearGradient>
   );
 }
-
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center'
   },
   scrollContainer: {
     flexGrow: 1,
@@ -136,17 +149,16 @@ const styles = StyleSheet.create({
   imageLogo: {
     width: 162,
     height: 232,
-    flexShrink: 0,
   },
   registerContainer: {
     backgroundColor: 'white',
-    width:'100%',
-    height:  428,
+    width: '100%',
+    height: 428,
     flexDirection: 'column',
     justifyContent: 'center',
     borderRadius: 25,
     padding: 20,
-    shadowOffset: { // adicionando sombras
+    shadowOffset: {
       width: 4,
       height: 4
     },
@@ -160,32 +172,23 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 48,
     paddingLeft: 10,
-    fontWeight: 'bold',
     marginBottom: 17,
-    flexShrink: 0,
-    fontWeight: 'bold',
-    shadowOffset: { // adicionando sombras
-      width: 4,
-      height: 4
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.8,
   },
   registerText: {
     color: 'black',
     fontWeight: '700',
-    paddingBottom : 15,
+    paddingBottom: 15,
     fontSize: 20,
     marginTop: 20
   },
-  passwordContainer : {
+  passwordContainer: {
     backgroundColor: '#E9E9E9',
     borderWidth: 2,
-    width: "100%",  
+    width: "100%",
     height: 48,
     borderRadius: 10,
     borderColor: 'black',
-    shadowOffset: { // adicionando sombras
+    shadowOffset: {
       width: 4,
       height: 4
     },
@@ -196,15 +199,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: 'center'
   },
-  TextFieldPassword :{
+  TextFieldPassword: {
     color: '#49454F',
     fontSize: 15,
     fontWeight: '700',
     paddingLeft: 10,
     flex: 1
-  },
-  iconEye : {
-    // top: 8
   },
   button: {
     width: "100%",

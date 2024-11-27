@@ -1,7 +1,20 @@
 import axios from "axios";
-
-export function GetLocation ({latitude, longitude}) {
-    const location = 
-    axios.get (`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
-    return location
-}
+ 
+// Função para enviar a localização ao banco de dados
+export const sendLocationToDatabase = ({latitude, longitude,route}) => {
+    const UUID = route.params;
+    const data = {
+        latitude,
+        longitude
+    };
+ 
+    // Enviar a localização para o banco
+    axios.post(`https://goobarapi-2.onrender.com/Bar/location/${UUID}`, data)
+        .then(response => {
+            console.log("Localização enviada com sucesso!", response.data);
+        })
+        .catch(error => {
+            console.log("Erro ao enviar localização:", error);
+        });
+};
+ 

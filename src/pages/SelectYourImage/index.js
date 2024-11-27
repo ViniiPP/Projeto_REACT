@@ -7,6 +7,8 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 export const Selectyourimage = ({navigation}) => {
 
+
+    
   return (
     
     <View style = {styles.bodyContainer}>
@@ -16,7 +18,7 @@ export const Selectyourimage = ({navigation}) => {
              <Text style = {styles.Subtitle}>Você precisará de cinco fotos para começar. Você pode adicionar outras imagens ou fazer alterações mais tarde.</Text>
              <TouchableHighlight style = {styles.touch}>
              <View style = {styles.ButtonImage}>
-                     <Text style = {{color: 'black', fontSize: 20,fontWeight: 'bold', }}onPress={() => navigation.navigate('choiseImage')}>
+                     <Text style = {{color: 'black', fontSize: 20,fontWeight: 'bold', }}onPress={() => navigation.navigate('ChoiseImage')}>
                      <AntDesign name="plus" size={24} color="black" />   Adicionar fotos</Text>
               </View>
              </TouchableHighlight>

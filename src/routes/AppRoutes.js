@@ -15,9 +15,10 @@ import { Namebar } from '../../src/pages/NameBar';
 import { Description } from '../../src/pages/Description';
 import { Selectyourimage } from '../../src/pages/SelectYourImage';
 import { ChoiseImage } from '../../src/pages/ChoiseImage';
-import { CameraScreen } from '../../src/pages/Camera';
+
 import { Location } from '../../src/pages/Location';
 import {baresDescription}  from '../../src/pages/bares/index'
+import {CameraScreen} from '../../src/pages/Camera/index'
 
 
 const Stack  = createNativeStackNavigator();
@@ -71,6 +72,16 @@ const AppNavigator = () => {
   return (
     <AppStack.Navigator>
       {/* Rotas principais */}
+      <AuthStack.Screen
+        name="Login"
+        component={Login}
+        options={{ headerShown: false }}
+      />
+      <AuthStack.Screen
+        name="Register"
+        component={Register}
+        options={{ headerShown: false }}
+      />
       <AppStack.Screen
         name="routes"
         component={Routes} // Suas tabs: Home e Perfil
@@ -96,6 +107,7 @@ const AppNavigator = () => {
         component={Selectyourimage}
         options={{ headerShown: false }}
       />
+   
       <AppStack.Screen
         name="ChoiseImage"
         component={ChoiseImage}

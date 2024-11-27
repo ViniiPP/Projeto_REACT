@@ -3,15 +3,14 @@ import { Text, View, StyleSheet,TouchableHighlight,Button,TextInput } from "reac
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios'; // Certifique-se de ter instalado o Axios
-
+ 
 export const Description = ({route, navigation}) => {
-
+ 
     const MaxLenght = 500;
-    const [numberDigito,setNumberDigito] = useState ('');
     const { nomeBar } = route.params; // Recupera o nomeBar passado pela tela anterior
-    const [descricao,setDescricao] = useState ('');
+    const [descricao, setDescricao] = useState ('');
     const [UUID, setUUID] =useState ()
-
+ 
     const registerBar = async () => {
         const token = await AsyncStorage.getItem('authToken');
         if (!token) {
@@ -22,19 +21,19 @@ export const Description = ({route, navigation}) => {
             Alert.alert('Erro', 'Por favor, preencha a descrição do bar.');
             return;
         }
-
+ 
         try {
             const payload = {
                 nomebar: nomeBar,
                 descricao,
             };
-
+ 
             const res = await axios.post('https://goobarapi-2.onrender.com/Bar/registerBar', payload, {
                 headers: {
                   Authorization: `Bearer ${token}`, // Adiciona o token no cabeçalho
                 },
               });
-
+ 
             setUUID (res.data)
             console.log('Resposta do servidor:', res.data);
             Alert.alert('Sucesso', 'Bar registrado com sucesso!');
@@ -44,20 +43,24 @@ export const Description = ({route, navigation}) => {
             Alert.alert('Erro', 'Não foi possível registrar o bar.');
         }
     };
-
+ 
     const nextTela = ()=> {
         registerBar ()
         navigation.navigate('selectyourimage', {UUID} );
     }
-
+ 
     return (
         <View style = {styles.bodyContainer}>
         <View style = {styles.bodyContainer}>
         <View style = {styles.TextContainer}>
              <Text style  = {styles.textTitle}>Crie sua melhor descrição</Text>
              <Text style = {styles.Subtitle}>Explique o que seu bar tem de especial e seus diferenciais.</Text>
-             <TextInput style = {styles.textinput} maxLength={50} value={descricao} onChangeText={(setDescricao)}></TextInput>
-             <Text>{MaxLenght - numberDigito.length} caracteres disponíveis</Text>
+             <TextInput
+                style = {styles.textinput}
+                maxLength={50} value={descricao}
+                onChangeText={(setDescricao)}>
+            </TextInput>
+             <Text>{MaxLenght - descricao.length} caracteres disponíveis</Text>
          </View>
         </View>
         <View style = {styles.nav}>
@@ -72,20 +75,20 @@ export const Description = ({route, navigation}) => {
               </View>
              </TouchableHighlight>
         </View>
-
-
+ 
+ 
      </View>
-
+ 
     )
 }
-
+ 
 const styles = StyleSheet.create (
     {
         bodyContainer :{
             flex: 1,
             backgroundColor: '#FBF7ED',
             alignItems: 'center',
-        
+       
         },
         TextContainer :{
             marginTop: 90,
@@ -96,9 +99,11 @@ const styles = StyleSheet.create (
         textinput : {
             backgroundColor: 'white',
             borderRadius: 10,
-            borderWidth: 3, 
+            borderWidth: 3,
             borderColor: 'black',
-            height: 320
+            height: 300,
+            padding: 15,
+            textAlign: 'left'
         },
         textTitle : {
             fontSize: 23,
@@ -110,7 +115,7 @@ const styles = StyleSheet.create (
         },
         nav : {
             elevation: 30,
-            flexDirection: 'row', 
+            flexDirection: 'row',
             width: '100%',
             height: 75,
             backgroundColor: 'white',
@@ -132,9 +137,9 @@ const styles = StyleSheet.create (
         touch : {
             alignItems: 'center',
         }
-
+ 
     }
 )
-
-
+ 
+ 
 export default Description;

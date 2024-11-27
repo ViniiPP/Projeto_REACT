@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, TouchableHighlight, Modal,TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, TouchableHighlight, Modal, TouchableOpacity } from "react-native";
 import MapView, { Marker } from 'react-native-maps';
 import * as LocationMap from 'expo-location';
+import { sendLocationToDatabase } from '../../services/LocationApi'; // Importe a função do arquivo de serviço
 import SendModal from '../../components/SendModal';
-
+ 
 export const Location = ({ navigation }) => {
     const [location, setLocation] = useState(null);
+    const [pinLocation, setPinLocation] = useState(null); // Localização do pin
     const [openModal, setOpenModal] = useState(false);
-
+ 
     const getCurrentLocation = async () => {
         let { status } = await LocationMap.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
@@ -17,18 +19,29 @@ export const Location = ({ navigation }) => {
         let currentLocation = await LocationMap.getCurrentPositionAsync({});
         setLocation(currentLocation);
     };
-
+ 
+    const handleMapPress = (e) => {
+        const { latitude, longitude } = e.nativeEvent.coordinate;
+        setPinLocation({
+            latitude,
+            longitude
+        });
+ 
+        // Enviar a localização para o banco de dados
+        sendLocationToDatabase(latitude, longitude);
+    };
+ 
     useEffect(() => {
         getCurrentLocation();
     }, []);
-
+ 
     const initialRegion = {
         latitude: location ? location.coords.latitude : -28.265133,
         longitude: location ? location.coords.longitude : -28.265133,
         latitudeDelta: 0.265133,
         longitudeDelta: 0.265133,
     };
-
+ 
     return (
         <View style={styles.container}>
             <Modal
@@ -37,32 +50,30 @@ export const Location = ({ navigation }) => {
                 animationType="fade"
                 onRequestClose={() => setOpenModal(false)}
             >
-             
                 <SendModal />
-                <TouchableOpacity style = {styles.close} onPress= { () => setOpenModal(false)}></TouchableOpacity>
+                <TouchableOpacity style={styles.close} onPress={() => setOpenModal(false)}></TouchableOpacity>
             </Modal>
-
+ 
             <MapView
                 style={styles.map}
                 region={initialRegion}
-                showsUserLocation={true}
                 followsUserLocation={true}
+                showsUserLocation={true}
+                onPress={handleMapPress} // Adiciona evento de clique no mapa
             >
-                {location && (
+                {pinLocation && (
                     <Marker
-                        coordinate={{
-                            latitude: location.coords.latitude,
-                            longitude: location.coords.longitude,
-                        }}
-                        title="Você está aqui"
+                        coordinate={pinLocation}
+                        title="Pin de localização"
+                        pinColor="red"
                     />
                 )}
             </MapView>
-
+ 
             <View style={styles.buttonOverlay}>
                 <Text style={styles.textTitle}>Onde fica seu bar?</Text>
             </View>
-
+ 
             <View style={styles.nav}>
                 <TouchableHighlight style={styles.touch}>
                     <Text style={styles.navText} onPress={() => navigation.navigate('selectyourimage')}>Voltar</Text>
@@ -76,7 +87,7 @@ export const Location = ({ navigation }) => {
         </View>
     );
 };
-
+ 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -139,13 +150,13 @@ const styles = StyleSheet.create({
     touch: {
         alignItems: 'center',
     },
-    close : {
-      position: 'absolute',
-      width:270,
-     height: 60,
-      marginTop: 485,
-      marginLeft: 60
+    close: {
+        position: 'absolute',
+        width: 270,
+        height: 60,
+        marginTop: 485,
+        marginLeft: 60
     }
 });
-
+ 
 export default Location;

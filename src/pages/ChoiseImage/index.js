@@ -5,12 +5,12 @@ import { useState, useEffect } from 'react';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-
+ 
 export const ChoiseImage = ({navigation}) => {
-
+ 
     const [image, setImage] = useState(null);
     const [remove,setRemove] = useState (false)
-
+ 
   useEffect(() => {
     (async () => {
       if (Platform.OS !== 'web') {
@@ -21,20 +21,20 @@ export const ChoiseImage = ({navigation}) => {
       }
     })();
      }, []);
-
+ 
      const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.Images,
           allowsEditing: true,
           quality: 1,
         });
-    
+   
         if (!result.canceled) {
-          setImage(result.assets[0].uri); 
+          setImage(result.assets[0].uri);
           setRemove (true)
         }
       };
-    
+   
       const removeImage = () => {
         if (image != null){
             setImage (null)
@@ -42,7 +42,7 @@ export const ChoiseImage = ({navigation}) => {
         }
       }
     return (
-    
+   
         <View style = {styles.bodyContainer}>
              <View style = {styles.bodyContainer}>
             <View style = {styles.TextContainer}>
@@ -51,8 +51,8 @@ export const ChoiseImage = ({navigation}) => {
                 <View style = {styles.ImagePainel}>
                 <TouchableHighlight style = {styles.touch} onPress={pickImage}>
              <View style = {styles.ButtonPlus}>
-             <AntDesign name="plus" size={33} color="black" /> 
-                     <Text style = {{color: 'black', fontSize: 20,fontWeight: 'bold' }}> 
+             <AntDesign name="plus" size={33} color="black" />
+                     <Text style = {{color: 'black', fontSize: 20,fontWeight: 'bold' }}>
                      Adicionar foto
                      </Text>
               </View>
@@ -69,7 +69,7 @@ export const ChoiseImage = ({navigation}) => {
                >
                  <Text style={styles.buttonText}><FontAwesome5 name="trash-alt" size={24} color="white" /></Text>
                </TouchableHighlight>
-              
+             
                )}
                 </View>
              
@@ -83,11 +83,11 @@ export const ChoiseImage = ({navigation}) => {
              </TouchableHighlight>
              <TouchableHighlight style = {{left: 15}}>
              <View style={styles.button }>
-                     <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'}}onPress={() => navigation.navigate('location')}>Avançar</Text>
+                     <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'}}onPress={() => navigation.navigate('Location')}>Avançar</Text>
               </View>
              </TouchableHighlight>
             </View>
-    
+   
         </View>
       )
     };
@@ -97,7 +97,7 @@ export const ChoiseImage = ({navigation}) => {
                 flex: 1,
                 backgroundColor: '#FBF7ED',
                 alignItems: 'center',
-            
+           
             },
             TextContainer :{
                 marginTop: 90,
@@ -108,7 +108,7 @@ export const ChoiseImage = ({navigation}) => {
             textinput : {
                 backgroundColor: 'white',
                 borderRadius: 10,
-                borderWidth: 3, 
+                borderWidth: 3,
                 borderColor: 'black',
                 height: 110
             },
@@ -122,7 +122,7 @@ export const ChoiseImage = ({navigation}) => {
             },
             nav : {
                 elevation: 30,
-                flexDirection: 'row', 
+                flexDirection: 'row',
                 width: '100%',
                 height: 75,
                 backgroundColor: 'white',
@@ -133,7 +133,7 @@ export const ChoiseImage = ({navigation}) => {
                 paddingLeft: 40
             }
             ,
-
+ 
             button : {
                 backgroundColor: 'black',
                 width: 120,
@@ -143,7 +143,7 @@ export const ChoiseImage = ({navigation}) => {
                 borderRadius: 8
             },
             touch : {
-          
+         
             },
             ButtonPlus : {
                 width: 165,
@@ -166,16 +166,16 @@ export const ChoiseImage = ({navigation}) => {
                 borderRadius: 100,
                 justifyContent: 'center',
                 alignItems: 'center',
-            
-            }, 
+           
+            },
             trash : {
                 width: 350,
                 justifyContent: 'center',
                 alignItems: 'center',
                 elevation: 20
             }
-    
+   
         }
     )
-
+ 
 export default ChoiseImage;
