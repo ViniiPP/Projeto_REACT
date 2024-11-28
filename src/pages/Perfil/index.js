@@ -91,7 +91,10 @@ export function Perfil({ navigation }) {
           <Text style={styles.perfilConfigText} onPress={() => handleLogout(navigation)}>Sair da conta</Text>
         </TouchableOpacity>
         <View style={styles.divisor} />
+     
       </View>
+      <View style = {styles.Top}></View>
+
     </ScrollView>
   );
 }
@@ -207,4 +210,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
+  Top : {
+    height: 160
+  }
 });

@@ -23,7 +23,8 @@ export const Namebar = ({navigation}) => {
            <View style = {styles.TextContainer}>
                 <Text style  = {styles.textTitle}>Vamos dar um nome ao seu bar</Text>
                 <Text style = {styles.Subtitle}>Nomes curtos funcionam melhor. Não se preocupe, você poderá fazer alterações depois.</Text>
-                <TextInput style = {styles.textinput} maxLength={50} value={nomeBar} onChangeText={(setNomeBar)}></TextInput>
+                <TextInput style = {styles.textinput} maxLength={50} value={nomeBar} onChangeText={(setNomeBar)}
+                textContentType='name'></TextInput>
                 <Text>{MaxLenght - nomeBar.length} caracteres disponíveis</Text>
             </View>
            </View>

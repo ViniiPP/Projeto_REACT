@@ -1,8 +1,7 @@
 import axios from "axios";
  
 // Função para enviar a localização ao banco de dados
-export const sendLocationToDatabase = ({latitude, longitude,route}) => {
-    const UUID = route.params;
+export const sendLocationToDatabase = ({latitude, longitude,UUID}) => {
     const data = {
         latitude,
         longitude

@@ -5,11 +5,11 @@ import * as LocationMap from 'expo-location';
 import { sendLocationToDatabase } from '../../services/LocationApi'; // Importe a função do arquivo de serviço
 import SendModal from '../../components/SendModal';
  
-export const Location = ({ navigation }) => {
+export const Location = ({ navigation,route }) => {
     const [location, setLocation] = useState(null);
     const [pinLocation, setPinLocation] = useState(null); // Localização do pin
     const [openModal, setOpenModal] = useState(false);
- 
+    const {UUID} = route.param;
     const getCurrentLocation = async () => {
         let { status } = await LocationMap.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
@@ -28,7 +28,7 @@ export const Location = ({ navigation }) => {
         });
  
         // Enviar a localização para o banco de dados
-        sendLocationToDatabase(latitude, longitude);
+        sendLocationToDatabase(latitude, longitude,UUID);
     };
  
     useEffect(() => {
@@ -65,7 +65,7 @@ export const Location = ({ navigation }) => {
                     <Marker
                         coordinate={pinLocation}
                         title="Pin de localização"
-                        pinColor="red"
+                        pinColor="fff"
                     />
                 )}
             </MapView>
