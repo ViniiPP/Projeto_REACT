@@ -7,7 +7,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
  
 export const ChoiseImage = ({navigation,route}) => {
-    const UUID = route.params
+    const {UUID} = route.params
     const [image, setImage] = useState(null);
     const [remove,setRemove] = useState (false)
  
@@ -41,6 +41,10 @@ export const ChoiseImage = ({navigation,route}) => {
             setRemove (false)
         }
       }
+
+      useEffect (() => {
+        console.log (UUID)
+      })
     return (
    
         <View style = {styles.bodyContainer}>

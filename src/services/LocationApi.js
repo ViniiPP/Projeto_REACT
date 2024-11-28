@@ -2,16 +2,8 @@ import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Para pegar o token de autenticação
  
 // Função para enviar a localização ao banco de dados
-export const sendLocationToDatabase = async ({ latitude, longitude, UUID }) => {
-    // Recuperar o token de autenticação do AsyncStorage
-    const token = await AsyncStorage.getItem('authToken');
-   
-    if (!token) {
-        console.log("Token de autenticação não encontrado!");
-        return;
-    }
- 
-    // Dados a serem enviados
+export const sendLocationToDatabase = ({latitude, longitude,route}) => {
+    const UUID = route.params;
     const data = {
         latitude,
         longitude
