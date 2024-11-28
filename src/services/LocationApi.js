@@ -1,9 +1,12 @@
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Para pegar o token de autenticação
+import { useEffect } from "react";
  
 // Função para enviar a localização ao banco de dados
-export const sendLocationToDatabase = ({latitude, longitude,route}) => {
-    const UUID = route.params;
+export const sendLocationToDatabase = ({latitude, longitude,UUID}) => {
+    useEffect (() => {
+        console.log ("id",UUID)
+    })
     const data = {
         latitude,
         longitude
