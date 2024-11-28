@@ -65,7 +65,7 @@ export const Location = ({ navigation }) => {
                     <Marker
                         coordinate={pinLocation}
                         title="Pin de localização"
-                        pinColor="red"
+                        pinColor="black"
                     />
                 )}
             </MapView>
