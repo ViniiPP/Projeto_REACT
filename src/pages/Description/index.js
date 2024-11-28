@@ -30,25 +30,23 @@ export const Description = ({route, navigation}) => {
  
             const res = await axios.post('https://goobarapi-2.onrender.com/Bar/registerBar', payload, {
                 headers: {
-                  Authorization: `Bearer ${token}`, // Adiciona o token no cabeçalho
+                  Authorization: `Bearer ${token}`, 
                 },
+                responseType: 'text',
               });
  
-            setUUID (res.data)
-            console.log('Resposta do servidor:', res.data);
-            Alert.alert('Sucesso', 'Bar registrado com sucesso!');
-            navigation.navigate('selectyourimage'); // Navega para a próxima página
+              const uuid = res.data.replace(/"/g, ''); 
+              console.log('UUID limpo:', uuid);
+  
+              
+              navigation.navigate('selectyourimage', {uuid} );
         } catch (err) {
             console.error(err);
             Alert.alert('Erro', 'Não foi possível registrar o bar.');
         }
     };
  
-    const nextTela = ()=> {
-        registerBar ()
-        navigation.navigate('selectyourimage', {UUID} );
-    }
- 
+   
     return (
         <View style = {styles.bodyContainer}>
         <View style = {styles.bodyContainer}>
@@ -71,7 +69,7 @@ export const Description = ({route, navigation}) => {
              </TouchableHighlight>
              <TouchableHighlight style = {{left: 15}}>
              <View style={styles.button }>
-                     <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'}}onPress={nextTela}>Avançar</Text>
+                     <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'}}onPress={registerBar}>Avançar</Text>
               </View>
              </TouchableHighlight>
         </View>

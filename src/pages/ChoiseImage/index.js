@@ -6,8 +6,8 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
  
-export const ChoiseImage = ({navigation}) => {
- 
+export const ChoiseImage = ({navigation,route}) => {
+    const UUID = route.params
     const [image, setImage] = useState(null);
     const [remove,setRemove] = useState (false)
  
@@ -83,7 +83,7 @@ export const ChoiseImage = ({navigation}) => {
              </TouchableHighlight>
              <TouchableHighlight style = {{left: 15}}>
              <View style={styles.button }>
-                     <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'}}onPress={() => navigation.navigate('Location')}>Avançar</Text>
+                     <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'}}onPress={() => navigation.navigate('Location', {UUID})}>Avançar</Text>
               </View>
              </TouchableHighlight>
             </View>

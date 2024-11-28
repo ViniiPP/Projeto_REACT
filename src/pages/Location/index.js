@@ -3,13 +3,14 @@ import { Text, View, StyleSheet, TouchableHighlight, Modal, TouchableOpacity } f
 import MapView, { Marker } from 'react-native-maps';
 import * as LocationMap from 'expo-location';
 import { sendLocationToDatabase } from '../../services/LocationApi'; // Importe a função do arquivo de serviço
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Para recuperar o UUID
 import SendModal from '../../components/SendModal';
  
-export const Location = ({ navigation,route }) => {
+export const Location = ({ navigation }) => {
     const [location, setLocation] = useState(null);
     const [pinLocation, setPinLocation] = useState(null); // Localização do pin
     const [openModal, setOpenModal] = useState(false);
-    const {UUID} = route.param;
+ 
     const getCurrentLocation = async () => {
         let { status } = await LocationMap.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
@@ -20,15 +21,22 @@ export const Location = ({ navigation,route }) => {
         setLocation(currentLocation);
     };
  
-    const handleMapPress = (e) => {
+    const handleMapPress = async (e) => {
         const { latitude, longitude } = e.nativeEvent.coordinate;
         setPinLocation({
             latitude,
             longitude
         });
  
+        // Recuperar o UUID
+        const UUID = await AsyncStorage.getItem('UUID');
+        if (!UUID) {
+            console.log("UUID não encontrado!");
+            return;
+        }
+ 
         // Enviar a localização para o banco de dados
-        sendLocationToDatabase(latitude, longitude,UUID);
+        sendLocationToDatabase({ latitude, longitude, UUID });
     };
  
     useEffect(() => {
@@ -65,7 +73,7 @@ export const Location = ({ navigation,route }) => {
                     <Marker
                         coordinate={pinLocation}
                         title="Pin de localização"
-                        pinColor="fff"
+                        pinColor="black"
                     />
                 )}
             </MapView>
