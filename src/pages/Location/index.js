@@ -6,10 +6,15 @@ import { sendLocationToDatabase } from '../../services/LocationApi'; // Importe 
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Para recuperar o UUID
 import SendModal from '../../components/SendModal';
  
-export const Location = ({ navigation }) => {
+export const Location = ({ navigation,route }) => {
     const [location, setLocation] = useState(null);
     const [pinLocation, setPinLocation] = useState(null); // Localização do pin
     const [openModal, setOpenModal] = useState(false);
+    const {UUID} = route.params
+
+    useEffect(() => {
+        console.log(UUID)
+    })
  
     const getCurrentLocation = async () => {
         let { status } = await LocationMap.requestForegroundPermissionsAsync();
@@ -29,7 +34,7 @@ export const Location = ({ navigation }) => {
         });
  
         // Recuperar o UUID
-        const UUID = await AsyncStorage.getItem('UUID');
+     
         if (!UUID) {
             console.log("UUID não encontrado!");
             return;
