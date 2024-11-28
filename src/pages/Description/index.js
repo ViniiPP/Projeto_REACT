@@ -9,7 +9,7 @@ export const Description = ({route, navigation}) => {
     const MaxLenght = 500;
     const { nomeBar } = route.params; // Recupera o nomeBar passado pela tela anterior
     const [descricao, setDescricao] = useState ('');
-    const [UUID, setUUID] =useState ()
+
  
     const registerBar = async () => {
         const token = await AsyncStorage.getItem('authToken');
@@ -35,11 +35,11 @@ export const Description = ({route, navigation}) => {
                 responseType: 'text',
               });
  
-              const uuid = res.data.replace(/"/g, ''); 
-              console.log('UUID limpo:', uuid);
+              const UUID = res.data.replace(/"/g, ''); 
+              console.log('UUID limpo:', UUID);
   
               
-              navigation.navigate('selectyourimage', {uuid} );
+              navigation.navigate('selectyourimage', {UUID} );
         } catch (err) {
             console.error(err);
             Alert.alert('Erro', 'Não foi possível registrar o bar.');
